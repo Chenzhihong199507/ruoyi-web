@@ -15,7 +15,12 @@ COPY . /app
 
 RUN pnpm run build
 
+FROM nginx:stable-alpine as production
+
+RUN echo "types { application/javascript js mjs; }" > /etc/nginx/conf.d/mjs.conf
 COPY --from=frontend /app/dist /app/public
+
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 6039
 
