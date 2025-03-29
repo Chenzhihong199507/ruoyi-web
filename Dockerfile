@@ -13,7 +13,7 @@ RUN pnpm install
 
 COPY . /app
 
-RUN pnpm run build
+RUN pnpm build
 
 FROM nginx:stable-alpine as production
 
