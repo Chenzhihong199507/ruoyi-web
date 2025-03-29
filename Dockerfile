@@ -21,6 +21,6 @@ COPY --from=frontend /app/dist /app/public
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 6039
+EXPOSE 8081
 
 CMD ["pnpm", "run", "prod"]
