@@ -41,7 +41,7 @@
 import { ref } from 'vue'
 import { NUpload, UploadFileInfo, useMessage, NUploadDragger, NP, NButton } from 'naive-ui'
 import { getToken } from '@/store/modules/auth/helper'
-import VueOfficePdf from '@vue-office/pdf'
+// import VueOfficePdf from '@vue-office/pdf'
 const message = useMessage()
 const token = getToken()
 const headers = {
