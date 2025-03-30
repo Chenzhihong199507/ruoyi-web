@@ -1,5 +1,5 @@
 # build front-end
-FROM node:lts-alpine AS frontend
+FROM node:lts-alpine AS build-stage
 
 RUN npm install pnpm -g
 
@@ -15,12 +15,9 @@ COPY . /app
 
 RUN pnpm build
 
-FROM nginx:stable-alpine as production
+FROM nginx:stable-alpine as production-stage
 
-COPY --from=frontend /app/dist /app/public
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+EXPOSE 80
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
-
-EXPOSE 8081
-
-CMD ["pnpm", "run", "prod"]
+CMD ["nginx", "-g", "daemon off;"]
